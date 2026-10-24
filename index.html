@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster | Interactive Quiz Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#home" class="logo">Quiz<span>Master.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+
+            <a href="#quiz" class="nav-btn">Explore Quiz →</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="tag">✦ LEARN • PLAY • GROW</span>
+
+            <h1>Challenge Your Mind.<br>
+                <span>Discover Your Genius.</span>
+            </h1>
+
+            <p>
+                Test your knowledge, explore exciting topics, and challenge
+                yourself with our interactive quiz experience.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#quiz" class="primary-btn">Start Exploring →</a>
+                <a href="#categories" class="secondary-btn">View Categories</a>
+            </div>
+
+            <div class="hero-stats">
+                <div>
+                    <h3>04+</h3>
+                    <p>Quiz Categories</p>
+                </div>
+                <div>
+                    <h3>100%</h3>
+                    <p>Learning Focus</p>
+                </div>
+                <div>
+                    <h3>∞</h3>
+                    <p>Curiosity</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="floating-card top-card">
+                <span>⚡</span>
+                <div>
+                    <strong>Think Faster!</strong>
+                    <small>Train your brain</small>
+                </div>
+            </div>
+
+            <div class="quiz-illustration">
+                <div class="quiz-icon">🧠</div>
+                <h2>Ready to Play?</h2>
+                <p>Your next challenge awaits.</p>
+
+                <div class="progress-info">
+                    <span>Knowledge Level</span>
+                    <span>100%</span>
+                </div>
+                <div class="progress-bar">
+                    <div></div>
+                </div>
+
+                <div class="answer-preview">
+                    <span>A</span>
+                    <span>B</span>
+                    <span>C</span>
+                    <span>D</span>
+                </div>
+            </div>
+
+            <div class="floating-card bottom-card">
+                <span>🏆</span>
+                <div>
+                    <strong>Keep Learning!</strong>
+                    <small>Every answer counts</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section categories" id="categories">
+        <div class="section-heading">
+            <span class="tag">EXPLORE & LEARN</span>
+            <h2>Choose Your <span>Challenge</span></h2>
+            <p>Pick a category and discover how much you know.</p>
+        </div>
+
+        <div class="category-grid">
+            <article class="category-card purple">
+                <div class="category-icon">💻</div>
+                <h3>Technology</h3>
+                <p>Explore computers, programming, and digital innovation.</p>
+                <a href="#quiz">Explore Category ↗</a>
+            </article>
+
+            <article class="category-card orange">
+                <div class="category-icon">🔬</div>
+                <h3>Science</h3>
+                <p>Discover fascinating facts about science and nature.</p>
+                <a href="#quiz">Explore Category ↗</a>
+            </article>
+
+            <article class="category-card green">
+                <div class="category-icon">🌍</div>
+                <h3>General Knowledge</h3>
+                <p>Test your knowledge of the world around you.</p>
+                <a href="#quiz">Explore Category ↗</a>
+            </article>
+
+            <article class="category-card pink">
+                <div class="category-icon">📚</div>
+                <h3>Education</h3>
+                <p>Strengthen your learning with useful questions.</p>
+                <a href="#quiz">Explore Category ↗</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Quiz Preview -->
+    <section class="quiz-section" id="quiz">
+        <div class="section-heading">
+            <span class="tag">SAMPLE QUESTION</span>
+            <h2>Test Your <span>Knowledge</span></h2>
+            <p>Here is a preview of the quiz interface.</p>
+        </div>
+
+        <div class="quiz-box">
+            <div class="quiz-top">
+                <span class="question-label">QUESTION 01 / 05</span>
+                <span class="difficulty">★ Easy</span>
+            </div>
+
+            <div class="question-progress">
+                <div></div>
+            </div>
+
+            <h3>Which language is used to structure a web page?</h3>
+
+            <div class="answers">
+                <div class="answer"><span>A</span> Python</div>
+                <div class="answer correct"><span>B</span> HTML <b>✓</b></div>
+                <div class="answer"><span>C</span> SQL</div>
+                <div class="answer"><span>D</span> C++</div>
+            </div>
+
+            <div class="quiz-footer">
+                <span>💡 Keep learning something new!</span>
+                <a href="#features" class="primary-btn">Explore Features →</a>
+            </div>
+        </div>
+
+        <p class="note">
+            This is a visual preview. Selecting answers and moving between
+            questions requires JavaScript.
+        </p>
+    </section>
+
+    <!-- Features -->
+    <section class="section features" id="features">
+        <div class="section-heading">
+            <span class="tag">WHY QUIZMASTER?</span>
+            <h2>Learning Made <span>Exciting</span></h2>
+            <p>A simple and engaging design built around learning and discovery.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Knowledge Testing</h3>
+                <p>Explore questions that help you check what you know.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Feedback Design</h3>
+                <p>A clear interface designed to show correct and incorrect answers.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Score Tracking Concept</h3>
+                <p>A planned score display makes quiz progress easy to understand.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsive Layout</h3>
+                <p>The page adapts to desktops, tablets, and mobile screens.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+        <div class="about-icon">🚀</div>
+        <div class="about-content">
+            <span class="tag">ABOUT THE PROJECT</span>
+            <h2>Small Questions.<br><span>Big Discoveries.</span></h2>
+            <p>
+                Interactive Quiz Application is a web project designed to make
+                learning enjoyable. Its interface presents quiz categories,
+                multiple-choice answers, and a clean learning experience.
+            </p>
+            <p class="tech-stack">
+                <strong>Technologies:</strong> HTML5 • CSS3
+            </p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h2>Curiosity Is Your Superpower!</h2>
+        <p>Keep exploring, keep learning, and challenge yourself every day.</p>
+        <a href="#categories" class="primary-btn">Explore Categories →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="#home" class="logo">Quiz<span>Master.</span></a>
+        <p>Interactive Quiz Application — Learn something new every day.</p>
+        <p class="copyright">© 2026 QuizMaster.</p>
+    </footer>
+
+</body>
+</html>
