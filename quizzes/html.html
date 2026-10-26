@@ -168,6 +168,19 @@ let currentQuestions = [];
 let currentIndex = 0;
 let score = 0;
 let answered = false;
+        
+function speakText(text) {
+    if (!("speechSynthesis" in window)) return;
+
+    window.speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 0.9;
+
+    window.speechSynthesis.speak(speech);
+}
+
 
 const difficulty = document.getElementById("difficulty");
 const startButton = document.getElementById("start-button");
@@ -192,6 +205,9 @@ function startQuiz() {
     startButton.hidden = true;
 
     showQuestion();
+    speakText(
+    "Question " + (currentIndex + 1) + ". " + item.q
+);
 }
 
 function showQuestion() {
@@ -222,9 +238,11 @@ function showQuestion() {
         answersArea.appendChild(button);
     });
 }
+        speakText("Correct! Well done!");
 
 function checkAnswer(selectedIndex) {
     if (answered) return;
+  feedback.style.color = "red";
 
     answered = true;
 
