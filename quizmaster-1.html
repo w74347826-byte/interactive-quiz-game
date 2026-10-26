@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="QuizMaster: interactive timed quizzes with a live leaderboard.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🧠</text></svg>">
+<title>QuizMaster | Challenge Your Mind</title>
+<style>
+:root{--p900:#2e1065;--p700:#6d28d9;--p600:#7c3aed;--p500:#8b5cf6;--p200:#ddd6fe;--p100:#ede9fe;--p50:#f5f3ff;--text:#1f1537;--muted:#6b5f8a;--ok:#16a34a;--bad:#dc2626;--r:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;color:var(--text);background:var(--p50);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.header{position:sticky;top:0;z-index:10;background:rgba(46,16,101,.95);backdrop-filter:blur(8px)}
+.navbar{max-width:1100px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;color:#fff}
+.logo{font-size:1.4rem;font-weight:800}.logo span{color:var(--p200)}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{opacity:.85;font-weight:500}.nav-links a:hover{opacity:1}
+.hero{text-align:center;color:#fff;padding:90px 20px 100px;background:radial-gradient(circle at 20% 10%,var(--p600),transparent 50%),linear-gradient(135deg,var(--p900),var(--p700))}
+.tag{display:inline-block;font-size:.75rem;letter-spacing:.12em;background:rgba(255,255,255,.14);padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);line-height:1.15;margin-bottom:14px}
+.hero h1 span{color:var(--p200)}.hero p{max-width:520px;margin:0 auto 28px;opacity:.9}
+.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;background:#fff;color:var(--p700);padding:12px 26px;border-radius:99px;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.btn.primary{background:linear-gradient(135deg,var(--p600),var(--p700));color:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.section{max-width:800px;margin:auto;padding:70px 20px;text-align:center}
+.section.alt{max-width:none;background:var(--p100)}.section.alt>*{max-width:800px;margin-left:auto;margin-right:auto}
+h2{font-size:2rem;margin-bottom:24px}h2 span{color:var(--p600)}
+.lead{color:var(--muted);font-size:1.05rem}
+.card{background:#fff;border-radius:var(--r);padding:26px;box-shadow:0 10px 30px rgba(109,40,217,.12);text-align:left}
+input[type=text]{width:100%;font:inherit;padding:12px 14px;border:2px solid var(--p200);border-radius:12px;margin:8px 0 18px}
+input:focus{outline:none;border-color:var(--p500)}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.cat{font:inherit;font-weight:600;cursor:pointer;padding:18px 10px;border:2px solid var(--p200);background:var(--p50);color:var(--p700);border-radius:var(--r);transition:.2s}
+.cat:hover{background:var(--p600);color:#fff;border-color:var(--p600)}
+.top{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;color:var(--p600);letter-spacing:.05em}
+.bar{height:8px;background:var(--p100);border-radius:9px;margin:10px 0 20px;overflow:hidden}
+.bar div{height:100%;background:linear-gradient(90deg,var(--p500),var(--p700));transition:width .4s}
+.card h3{font-size:1.3rem;margin-bottom:16px}
+.answers{display:grid;gap:10px}
+.ans{font:inherit;text-align:left;cursor:pointer;padding:13px 16px;border:2px solid var(--p200);border-radius:12px;background:#fff;display:flex;gap:12px;align-items:center;transition:.15s}
+.ans b{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--p100);color:var(--p700);flex:none}
+.ans:not(:disabled):hover{border-color:var(--p500);background:var(--p50)}
+.ans:disabled{cursor:default}
+.ans.correct{border-color:var(--ok);background:#dcfce7}.ans.wrong{border-color:var(--bad);background:#fee2e2}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap;color:var(--muted)}
+.result{text-align:center}.big{font-size:3.4rem;font-weight:800;color:var(--p600)}
+.result .btn{margin:6px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--p100)}
+th{color:var(--p700);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+.footer{background:var(--p900);color:var(--p200);text-align:center;padding:26px 20px}
+@media(max-width:600px){.nav-links{gap:14px;font-size:.9rem}.section{padding:50px 16px}}
+
+/* ---- Professional upgrade ---- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid var(--p500);outline-offset:2px}
+.stats{max-width:900px;margin:-44px auto 0;position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--p200);border-radius:var(--r);overflow:hidden;box-shadow:0 12px 32px rgba(46,16,101,.2)}
+.stats div{background:#fff;padding:18px 10px;text-align:center}
+.stats strong{display:block;font-size:1.6rem;color:var(--p600)}.stats span{font-size:.8rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.feat{background:#fff;border-radius:var(--r);padding:22px 16px;box-shadow:0 6px 20px rgba(109,40,217,.1);transition:.2s}
+.feat:hover{transform:translateY(-4px)}.feat i{font-style:normal;font-size:2rem}.feat h3{margin:8px 0 4px;color:var(--p700)}.feat p{color:var(--muted);font-size:.92rem}
+.timer{height:6px;background:var(--p100);border-radius:9px;margin:-10px 0 18px;overflow:hidden}
+.timer div{height:100%;background:var(--ok);width:100%}.timer div.low{background:var(--bad)}
+.streak{font-weight:700;color:var(--p600)}
+select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:10px;margin-bottom:14px;background:#fff;color:var(--text)}
+.review{text-align:left;margin-top:22px}.review h4{color:var(--p700);margin-bottom:8px}
+.review li{list-style:none;padding:10px 12px;margin-bottom:8px;background:var(--p50);border-left:4px solid var(--bad);border-radius:8px;font-size:.93rem}
+.review li em{color:var(--ok);font-style:normal;font-weight:700}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+</style>
+</head>
+<body>
+<header class="header">
+  <nav class="navbar">
+    <a href="#home" class="logo">Quiz<span>Master.</span></a>
+    <ul class="nav-links">
+      <li><a href="#play">Play</a></li>
+      <li><a href="#leaderboard">Leaderboard</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <span class="tag">✦ LEARN • PLAY • GROW</span>
+  <h1>Challenge Your Mind.<br><span>Discover Your Genius.</span></h1>
+  <p>Pick a category, answer the questions, and climb the leaderboard.</p>
+  <a href="#play" class="btn">Start Playing →</a>
+</section>
+
+<section class="stats" aria-label="Highlights">
+  <div><strong>4</strong><span>Categories</span></div>
+  <div><strong>60</strong><span>Questions</span></div>
+  <div><strong>20s</strong><span>Per question</span></div>
+  <div><strong>Live</strong><span>Leaderboard</span></div>
+</section>
+
+<section class="section" id="play">
+  <h2>Test Your <span>Knowledge</span></h2>
+  <div class="card" id="game" aria-live="polite">Loading…</div>
+</section>
+
+<section class="section alt" id="leaderboard">
+  <h2>Top <span>Players</span></h2>
+  <div class="card">
+  <label for="filter" class="sr">Filter by category</label>
+  <select id="filter"><option value="">All categories</option></select>
+  <div class="table-wrap">
+    <table><thead><tr><th>#</th><th>Player</th><th>Category</th><th>Score</th></tr></thead>
+    <tbody id="board"><tr><td colspan="4">Loading…</td></tr></tbody></table>
+  </div></div>
+</section>
+
+<section class="section" id="features">
+  <h2>Why <span>QuizMaster</span></h2>
+  <div class="grid">
+    <article class="feat"><i>⏱️</i><h3>Timed rounds</h3><p>20 seconds per question keeps you sharp.</p></article>
+    <article class="feat"><i>🔥</i><h3>Streaks</h3><p>Chain correct answers and watch your streak grow.</p></article>
+    <article class="feat"><i>📝</i><h3>Answer review</h3><p>See what you missed and learn the right answer.</p></article>
+    <article class="feat"><i>🏆</i><h3>Leaderboard</h3><p>Compete by category with scores stored on the server.</p></article>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About <span>QuizMaster</span></h2>
+  <p class="lead">A full-stack quiz app: HTML, CSS and JavaScript on the front end, with a Node.js and Express backend that stores scores. If the server is offline, scores are saved in your browser instead.</p>
+</section>
+
+<footer class="footer"><p>© 2026 QuizMaster. Learn something new every day.</p></footer>
+<script>window.QUESTIONS={"Technology": [{"q": "Which language structures a web page?", "o": ["Python", "HTML", "SQL", "C++"], "a": 1}, {"q": "What does CSS stand for?", "o": ["Creative Style System", "Cascading Style Sheets", "Computer Style Syntax", "Colorful Style Sheets"], "a": 1}, {"q": "Which of these is a version control system?", "o": ["Photoshop", "Git", "Excel", "Chrome"], "a": 1}, {"q": "What does HTTP stand for?", "o": ["HyperText Transfer Protocol", "High Transfer Text Process", "HyperText Transmission Program", "Host Transfer Terminal Protocol"], "a": 0}, {"q": "Which symbol starts a CSS class selector?", "o": ["#", ".", "*", "&"], "a": 1}, {"q": "What does an API let software do?", "o": ["Talk to other software", "Cool the CPU", "Print documents", "Edit photos"], "a": 0}, {"q": "What does RAM stand for?", "o": ["Random Access Memory", "Read Active Module", "Rapid Application Memory", "Run Access Mode"], "a": 0}, {"q": "Which of these is a programming language?", "o": ["HTML", "JavaScript", "HTTP", "URL"], "a": 1}, {"q": "What does URL stand for?", "o": ["Uniform Resource Locator", "Universal Reference Link", "United Resource List", "Unique Route Locator"], "a": 0}, {"q": "Which company created the iPhone?", "o": ["Samsung", "Google", "Apple", "Nokia"], "a": 2}, {"q": "What is the number 2 in binary?", "o": ["01", "10", "11", "100"], "a": 1}, {"q": "Which symbol starts a single-line comment in JavaScript?", "o": ["##", "<!--", "//", "**"], "a": 2}, {"q": "What does AI stand for?", "o": ["Automated Internet", "Artificial Intelligence", "Advanced Input", "Applied Interface"], "a": 1}, {"q": "Which device is used to type text?", "o": ["Monitor", "Speaker", "Keyboard", "Printer"], "a": 2}, {"q": "What does SQL mainly work with?", "o": ["Images", "Databases", "Audio", "Networks"], "a": 1}], "Science": [{"q": "What is the chemical formula for water?", "o": ["CO2", "O2", "H2O", "NaCl"], "a": 2}, {"q": "Which planet is closest to the Sun?", "o": ["Venus", "Mercury", "Earth", "Mars"], "a": 1}, {"q": "Which gas do plants absorb from the air?", "o": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], "a": 2}, {"q": "Which part of the cell is its powerhouse?", "o": ["Nucleus", "Ribosome", "Mitochondria", "Membrane"], "a": 2}, {"q": "What is the center of an atom called?", "o": ["Shell", "Nucleus", "Orbit", "Ion"], "a": 1}, {"q": "Which force keeps us on the ground?", "o": ["Magnetism", "Friction", "Gravity", "Tension"], "a": 2}, {"q": "At sea level, water boils at what temperature?", "o": ["50°C", "90°C", "100°C", "120°C"], "a": 2}, {"q": "How many bones are in the adult human body?", "o": ["106", "206", "306", "406"], "a": 1}, {"q": "Which planet is known as the Red Planet?", "o": ["Jupiter", "Venus", "Mars", "Saturn"], "a": 2}, {"q": "What is the hardest natural substance?", "o": ["Gold", "Iron", "Diamond", "Quartz"], "a": 2}, {"q": "Which organ pumps blood around the body?", "o": ["Lungs", "Heart", "Liver", "Kidney"], "a": 1}, {"q": "Animals that eat only plants are called what?", "o": ["Carnivores", "Omnivores", "Herbivores", "Insectivores"], "a": 2}, {"q": "What is the chemical symbol for gold?", "o": ["Go", "Gd", "Au", "Ag"], "a": 2}, {"q": "Which gas makes up most of Earth's atmosphere?", "o": ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"], "a": 1}, {"q": "Which is the largest planet in our solar system?", "o": ["Saturn", "Earth", "Neptune", "Jupiter"], "a": 3}], "General Knowledge": [{"q": "What is the capital of France?", "o": ["Paris", "Rome", "Madrid", "Berlin"], "a": 0}, {"q": "Which is the largest ocean?", "o": ["Atlantic", "Indian", "Arctic", "Pacific"], "a": 3}, {"q": "How many continents are there?", "o": ["5", "6", "7", "8"], "a": 2}, {"q": "Who painted the Mona Lisa?", "o": ["Michelangelo", "Leonardo da Vinci", "Picasso", "Van Gogh"], "a": 1}, {"q": "Which country has the most people?", "o": ["USA", "India", "Brazil", "Russia"], "a": 1}, {"q": "Which is the longest river in Africa?", "o": ["Congo", "Niger", "Nile", "Zambezi"], "a": 2}, {"q": "Which country is home to the kangaroo?", "o": ["New Zealand", "South Africa", "Australia", "Brazil"], "a": 2}, {"q": "Which is the tallest mountain above sea level?", "o": ["K2", "Mount Everest", "Kilimanjaro", "Mont Blanc"], "a": 1}, {"q": "How many days are in a leap year?", "o": ["365", "364", "366", "367"], "a": 2}, {"q": "Which language has the most native speakers?", "o": ["English", "Mandarin Chinese", "Spanish", "Hindi"], "a": 1}, {"q": "What is the currency of Japan?", "o": ["Won", "Yuan", "Yen", "Dollar"], "a": 2}, {"q": "Which is the smallest continent?", "o": ["Europe", "Australia", "Antarctica", "South America"], "a": 1}, {"q": "In which city is the Eiffel Tower?", "o": ["London", "Paris", "Rome", "Berlin"], "a": 1}, {"q": "Mixing blue and yellow makes which color?", "o": ["Green", "Purple", "Orange", "Brown"], "a": 0}, {"q": "Which is the largest animal on Earth?", "o": ["African elephant", "Blue whale", "Giraffe", "Great white shark"], "a": 1}], "Education": [{"q": "What is 12 × 12?", "o": ["124", "144", "132", "156"], "a": 1}, {"q": "Who wrote Romeo and Juliet?", "o": ["Dickens", "Twain", "Austen", "Shakespeare"], "a": 3}, {"q": "Which of these is a prime number?", "o": ["15", "21", "17", "27"], "a": 2}, {"q": "What do a triangle's angles add up to?", "o": ["90°", "180°", "270°", "360°"], "a": 1}, {"q": "What is the square root of 81?", "o": ["8", "9", "7", "11"], "a": 1}, {"q": "Which word is a noun?", "o": ["Quickly", "Happy", "Table", "Run"], "a": 2}, {"q": "What is 15 + 27?", "o": ["32", "42", "52", "44"], "a": 1}, {"q": "How many sides does a hexagon have?", "o": ["5", "6", "7", "8"], "a": 1}, {"q": "What is the plural of \"child\"?", "o": ["Childs", "Childes", "Children", "Childrens"], "a": 2}, {"q": "Which is the largest number?", "o": ["0.9", "0.99", "9", "0.09"], "a": 2}, {"q": "How many minutes are in an hour?", "o": ["30", "60", "90", "100"], "a": 1}, {"q": "Which punctuation mark ends a question?", "o": [".", "!", "?", ","], "a": 2}, {"q": "What is 100 ÷ 4?", "o": ["20", "25", "30", "40"], "a": 1}, {"q": "Which of these is a verb?", "o": ["Beautiful", "Jump", "Blue", "Slowly"], "a": 1}, {"q": "How many degrees are in a right angle?", "o": ["45°", "90°", "180°", "360°"], "a": 1}]};</script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const game = $("game"), board = $("board"), filter = $("filter");
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const L = "ABCD", TIME = 20, MEDAL = ["🥇", "🥈", "🥉"];
+  let data = {}, qs = [], i = 0, score = 0, streak = 0, best = 0, wrong = [], timer = null;
+  let cat = "", name = localStorage.getItem("qm-name") || "";
+
+  const shuffle = (a) => a.map((v) => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map((x) => x[1]);
+  const local = () => { try { return JSON.parse(localStorage.getItem("qm-scores") || "[]"); } catch { return []; } };
+
+  // ---- Leaderboard (API first, localStorage fallback) ----
+  async function loadBoard() {
+    const c = filter.value;
+    let rows;
+    try {
+      const r = await fetch("/api/scores" + (c ? "?category=" + encodeURIComponent(c) : ""));
+      if (!r.ok) throw 0;
+      rows = await r.json();
+    } catch {
+      rows = local().filter((r) => !c || r.category === c).sort((a, b) => b.pct - a.pct).slice(0, 10);
+    }
+    board.innerHTML = rows.length
+      ? rows.map((r, n) => `<tr><td>${MEDAL[n] || n + 1}</td><td>${esc(r.name)}</td><td>${esc(r.category)}</td><td>${r.score}/${r.total} (${r.pct}%)</td></tr>`).join("")
+      : '<tr><td colspan="4">No scores yet. Be the first!</td></tr>';
+  }
+
+  async function saveScore() {
+    const entry = { name: name || "Anonymous", category: cat, score, total: qs.length };
+    try {
+      const r = await fetch("/api/scores", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry) });
+      if (!r.ok) throw 0;
+    } catch {
+      const all = local(); all.push({ ...entry, pct: Math.round((score / qs.length) * 100) });
+      localStorage.setItem("qm-scores", JSON.stringify(all.slice(-100)));
+    }
+    loadBoard();
+  }
+
+  // ---- Screens ----
+  function home() {
+    clearInterval(timer);
+    game.innerHTML = `
+      <label for="pname"><b>Your name</b></label>
+      <input type="text" id="pname" maxlength="20" placeholder="Enter your name" value="${esc(name)}">
+      <p style="margin-bottom:12px"><b>Choose a category</b></p>
+      <div class="cats">${Object.keys(data).map((c) => `<button class="cat" data-c="${esc(c)}">${esc(c)}<br><small>${data[c].length} questions</small></button>`).join("")}</div>`;
+    game.querySelectorAll(".cat").forEach((b) => b.addEventListener("click", () => {
+      name = $("pname").value.trim();
+      localStorage.setItem("qm-name", name);
+      start(b.dataset.c);
+    }));
+  }
+
+  function start(c) { cat = c; qs = shuffle(data[c]); i = 0; score = 0; streak = 0; best = 0; wrong = []; question(); }
+
+  function question() {
+    const q = qs[i], n = qs.length;
+    game.innerHTML = `
+      <div class="top"><span>${esc(cat.toUpperCase())}</span><span>QUESTION ${i + 1} / ${n}</span></div>
+      <div class="bar"><div style="width:${(i / n) * 100}%"></div></div>
+      <div class="timer" aria-hidden="true"><div id="tbar"></div></div>
+      <h3>${esc(q.q)}</h3>
+      <div class="answers">${q.o.map((o, k) => `<button class="ans" data-k="${k}"><b>${L[k]}</b>${esc(o)}</button>`).join("")}</div>
+      <div class="foot"><span id="fb">Score: ${score} · <span class="streak">🔥 ${streak}</span> · <span id="left">${TIME}s</span></span>
+      <button class="btn primary" id="next" disabled>${i === n - 1 ? "See Results →" : "Next →"}</button></div>`;
+    game.querySelectorAll(".ans").forEach((b) => b.addEventListener("click", () => pick(+b.dataset.k)));
+    $("next").addEventListener("click", () => (++i < n ? question() : result()));
+
+    let t = TIME; clearInterval(timer);
+    timer = setInterval(() => {
+      t--; $("left").textContent = t + "s";
+      $("tbar").style.width = (t / TIME) * 100 + "%";
+      if (t <= 5) $("tbar").classList.add("low");
+      if (t <= 0) pick(-1);
+    }, 1000);
+  }
+
+  function pick(k) {
+    clearInterval(timer);
+    const q = qs[i], all = game.querySelectorAll(".ans");
+    if (all[0].disabled) return;
+    all.forEach((b) => (b.disabled = true));
+    all[q.a].classList.add("correct");
+    if (k === q.a) { score++; streak++; best = Math.max(best, streak); $("fb").textContent = `✅ Correct! Score: ${score} · 🔥 ${streak}`; }
+    else {
+      streak = 0; wrong.push({ q: q.q, a: q.o[q.a] });
+      if (k >= 0) all[k].classList.add("wrong");
+      $("fb").textContent = k < 0 ? "⏰ Time's up!" : "❌ Not quite.";
+    }
+    $("next").disabled = false; $("next").focus();
+    game.querySelector(".bar div").style.width = ((i + 1) / qs.length) * 100 + "%";
+  }
+
+  function result() {
+    const pct = Math.round((score / qs.length) * 100);
+    const msg = pct === 100 ? "Perfect score! 🏆" : pct >= 75 ? "Excellent work! 🎉" : pct >= 50 ? "Good job! 👍" : "Keep practicing!";
+    game.innerHTML = `<div class="result"><p class="top" style="justify-content:center">${esc(cat.toUpperCase())} COMPLETE</p>
+      <div class="big">${score} / ${qs.length}</div><h3>${msg}</h3>
+      <p>${pct}% correct · Best streak 🔥 ${best}</p>
+      <button class="btn primary" id="again">Play Again ↻</button><button class="btn" id="menu" style="border:2px solid var(--p200)">Change Category</button>
+      ${wrong.length ? `<div class="review"><h4>Review: what you missed</h4><ul>${wrong.map((w) => `<li>${esc(w.q)}<br><em>Answer: ${esc(w.a)}</em></li>`).join("")}</ul></div>` : ""}</div>`;
+    $("again").addEventListener("click", () => start(cat));
+    $("menu").addEventListener("click", home);
+    saveScore();
+  }
+
+  // ---- Init ----
+  filter.addEventListener("change", loadBoard);
+  Promise.resolve(window.QUESTIONS).then((d) => {
+    data = d;
+    Object.keys(d).forEach((c) => filter.insertAdjacentHTML("beforeend", `<option>${esc(c)}</option>`));
+    home();
+  }).catch(() => (game.textContent = "Could not load questions. Please refresh."));
+  loadBoard();
+})();
+
+</script>
+</body>
+</html>
