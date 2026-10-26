@@ -1,0 +1,49 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Interactive Quiz Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="categories.html">Categories</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main class="page-content">
+        <h1>Contact Us</h1>
+        <p>Have a question or suggestion? We'd love to hear from you!</p>
+
+        <form action="mailto:your-email@example.com"
+              method="post"
+              enctype="text/plain">
+
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="Name"
+                   placeholder="Enter your name" required>
+            <br><br>
+
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="Email"
+                   placeholder="Enter your email" required>
+            <br><br>
+
+            <label for="message">Your Message:</label><br>
+            <textarea id="message" name="Message"
+                      placeholder="Write your message"
+                      rows="5" required></textarea>
+            <br><br>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </main>
+
+</body>
+</html>
+```
