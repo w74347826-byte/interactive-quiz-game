@@ -205,9 +205,10 @@ function startQuiz() {
     startButton.hidden = true;
 
     showQuestion();
-    speakText(
-    "Question " + (currentIndex + 1) + ". " + item.q
-);
+   
+    showQuestion();
+}
+
 }
 
 function showQuestion() {
@@ -221,6 +222,11 @@ function showQuestion() {
         " | Score: " + score;
 
     questionText.textContent = item.q;
+    
+speakText(
+    "Question " + (currentIndex + 1) + ". " + item.q
+);
+
     answersArea.innerHTML = "";
     feedback.textContent = "";
     nextButton.hidden = true;
@@ -232,7 +238,7 @@ function showQuestion() {
         button.textContent = String.fromCharCode(65 + index) + ". " + answer;
 
         button.addEventListener("click", function () {
-            checkAnswer(index);
+          
         });
 
         answersArea.appendChild(button);
@@ -250,6 +256,8 @@ function checkAnswer(selectedIndex) {
     const buttons = answersArea.querySelectorAll("button");
 
     buttons.forEach(function (button) {
+        speakText"Correct! Well done!";
+        speakText("Correct! Well done!");
         button.disabled = true;
     });
 
