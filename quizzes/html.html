@@ -205,13 +205,13 @@ function startQuiz() {
     startButton.hidden = true;
 
     showQuestion();
-   
+
+}
+
+
     showQuestion();
 }
 
-}
-
-function showQuestion() {
     answered = false;
 
     const item = currentQuestions[currentIndex];
@@ -237,14 +237,17 @@ speakText(
         button.className = "answer-button";
         button.textContent = String.fromCharCode(65 + index) + ". " + answer;
 
-        button.addEventListener("click", function () {
+       button.addEventListener("click", function () {
+    checkAnswer(index);
+});
           
-        });
+    
 
         answersArea.appendChild(button);
+        checkAnswer(index);
     });
 }
-        speakText("Correct! Well done!");
+       
 
 function checkAnswer(selectedIndex) {
     if (answered) return;
@@ -252,22 +255,27 @@ function checkAnswer(selectedIndex) {
 
     answered = true;
 
-    const item = currentQuestions[currentIndex];
-    const buttons = answersArea.querySelectorAll("button");
-
-    buttons.forEach(function (button) {
-        speakText"Correct! Well done!";
-        speakText("Correct! Well done!");
-        button.disabled = true;
+  buttons.forEach(function (button) {
+    button.disabled = true;
     });
 
     if (selectedIndex === item.a) {
         score++;
-        feedback.textContent = "Correct! Well done!";
-        feedback.style.color = "green";
-    } else {
-        feedback.textContent =
-            "Incorrect. Correct answer: " + item.o[item.a];
+       if (selectedIndex === item.a) {
+    score++;
+    feedback.textContent = "Correct! Well done!";
+    feedback.style.color = "green";
+
+    speakText("Correct! Well done!");
+} else {
+    feedback.textContent =
+        "Incorrect. Correct answer: " + item.o[item.a];
+    feedback.style.color = "red";
+
+    speakText(
+        "Incorrect. The correct answer is " + item.o[item.a]
+    );
+}
         feedback.style.color = "red";
     }
 
