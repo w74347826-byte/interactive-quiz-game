@@ -4,112 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6C3BDB">
+    <meta name="description" content="Challenge your mind with QuizMaster's interactive quizzes. Learn, play, and grow.">
+
     <title>QuizMaster | Interactive Quiz Application</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Navigation -->
     <header class="header">
-        <nav class="navbar">
-            <li><a href="index.html">Home</a></li>
-<li><a href="quizmaster-1.html">Quiz</a></li>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo">
+                Quiz<span>Master.</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizmaster-1.html">Quiz</a></li>
             </ul>
 
-            <a href="quizmaster-1.html" class="nav-btn">Explore Quiz →</a>
+            <a href="quizmaster-1.html" class="nav-btn">
+                Explore Quiz →
+            </a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-            </div>
-</section>
-        <div class="hero-content">
-            <span class="tag">✦ LEARN • PLAY • GROW</span>
+    <main>
+        <section class="hero" id="home">
 
-            <h1>Challenge Your Mind.<br>
-                
-                <span>Discover Your Genius.</span>
-            </h1>
-            <p>
-    An interactive web application designed to test your knowledge,
-    improve your learning, and make quizzes engaging with instant
-    feedback and voice narration.
-</p>
+            <!-- Left Content -->
+            <div class="hero-content">
+                <span class="tag">✦ LEARN • PLAY • GROW</span>
 
-            <p>
-                Test your knowledge, explore exciting topics, and challenge
-                yourself with our interactive quiz experience.
-            </p>
+                <h1>
+                    Challenge Your Mind.
+                    <span>Discover Your Genius.</span>
+                </h1>
 
-            <div class="hero-buttons">
-                <a href="#quiz" class="primary-btn">Start Exploring →</a>
-                <a href="#categories" class="secondary-btn">View Categories</a>
-            </div>
+                <p>
+                    An interactive web application designed to test
+                    your knowledge, improve your learning, and make
+                    quizzes engaging with instant feedback and voice
+                    narration.
+                </p>
 
-            <div class="hero-stats">
-                <div>
-                    <h3>04+</h3>
-                    <p>Quiz Categories</p>
-                </div>
-                <div>
-                    <h3>100%</h3>
-                    <p>Learning Focus</p>
-                </div>
-                <div>
-                    <h3>∞</h3>
-                    <p>Curiosity</p>
-                </div>
-            </div>
+                <p>
+                    Test your knowledge, explore exciting topics,
+                    and challenge yourself with our interactive
+                    quiz experience.
+                </p>
 
-       
-            <div class="floating-card top-card">
-                <span>⚡</span>
-                <div>
-                    <strong>Think Faster!</strong>
-                    <small>Train your brain</small>
-                </div>
-            </div>
+                <div class="hero-buttons">
+                    <a href="quizmaster-1.html" class="primary-btn">
+                        Start Exploring →
+                    </a>
 
-            <div class="quiz-illustration">
-                <div class="quiz-icon">🧠</div>
-                <h2>Ready to Play?</h2>
-                <p>Your next challenge awaits.</p>
-
-                <div class="progress-info">
-                    <span>Knowledge Level</span>
-                    <span>100%</span>
-                </div>
-                <div class="progress-bar">
-                    <div></div>
+                    <a href="categories.html" class="secondary-btn">
+                        View Categories
+                    </a>
                 </div>
 
-                <div class="answer-preview">
-                    <span>A</span>
-                    <span>B</span>
-                    <span>C</span>
-                    <span>D</span>
+                <!-- Statistics -->
+                <div class="hero-stats">
+                    <div>
+                        <h3>04+</h3>
+                        <p>Quiz Categories</p>
+                    </div>
+
+                    <div>
+                        <h3>100%</h3>
+                        <p>Learning Focus</p>
+                    </div>
+
+                    <div>
+                        <h3>∞</h3>
+                        <p>Curiosity</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="floating-card bottom-card">
-                <span>🏆</span>
-                <div>
-                    <strong>Keep Learning!</strong>
-                    <small>Every answer counts</small>
-                        </div>
-</section>
-              
+            <!-- Right Illustration -->
+            <div class="hero-visual">
+
+                <div class="floating-card top-card">
+                    <span>⚡</span>
+                    <div>
+                        <strong>Think Faster!</strong>
+                        <small>Train your brain</small>
+                    </div>
+                </div>
+
+                <div class="quiz-illustration">
+                    <div class="quiz-icon">🧠</div>
+
+                    <h2>Ready to Play?</h2>
+                    <p>Your next challenge awaits.</p>
+
+                    <div class="progress-info">
+                        <span>Knowledge Level</span>
+                        <span>100%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div></div>
+                    </div>
+
+                    <div class="answer-preview">
+                        <span>A</span>
+                        <span>B</span>
+                        <span>C</span>
+                        <span>D</span>
+                    </div>
+                </div>
+
+                <div class="floating-card bottom-card">
+                    <span>🏆</span>
+                    <div>
+                        <strong>Keep Learning!</strong>
+                        <small>Every answer counts</small>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <a href="#home" class="logo">Quiz<span>Master.</span></a>
-        <p>Interactive Quiz Application — Learn something new every day.</p>
+        <a href="index.html" class="logo">
+            Quiz<span>Master.</span>
+        </a>
+
+        <p>
+            Interactive Quiz Application — Learn something new
+            every day.
+        </p>
+
         <p class="copyright">© 2026 QuizMaster.</p>
     </footer>
-    
-<script src="script.js"></script>
 
+    <script src="script.js"></script>
 
 </body>
 </html>
