@@ -935,3 +935,321 @@ a {
         padding: 15px;
     }
 }
+/* =================================
+   QUIZMASTER RESPONSIVE FIX
+   Preserves desktop and mobile design
+================================= */
+
+/* Prevent horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+/* Restore professional desktop navigation */
+.header .navbar {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.header .navbar .logo {
+    color: #19152f;
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.header .navbar .logo span {
+    color: #6c4cf1;
+}
+
+.header .navbar .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.header .navbar .nav-links a {
+    color: #55536b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.header .navbar .nav-btn {
+    background: #6c4cf1;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+/* Desktop hero layout */
+.hero {
+    width: 100%;
+    min-width: 0;
+}
+
+.hero-content {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.hero-visual {
+    flex: 0 1 390px;
+    min-width: 0;
+}
+
+.hero h1,
+.hero p {
+    overflow-wrap: anywhere;
+}
+
+/* Tablet and mobile */
+@media screen and (max-width: 950px) {
+    .hero {
+        gap: 35px;
+        padding: 55px 5%;
+    }
+
+    .hero-visual {
+        flex-basis: 340px;
+    }
+
+    .hero-stats {
+        gap: 22px;
+    }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 650px) {
+    .header .navbar {
+        padding: 14px 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .header .navbar .logo {
+        font-size: 23px;
+    }
+
+    .header .navbar .nav-links {
+        width: 100%;
+        gap: 24px;
+    }
+
+    .header .navbar .nav-btn {
+        display: inline-block;
+        padding: 9px 14px;
+        font-size: 13px;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 45px 20px 65px;
+        gap: 30px;
+        min-height: auto;
+    }
+
+    .hero-content,
+    .hero-visual {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(29px, 7.5vw, 40px);
+        line-height: 1.3;
+        letter-spacing: -0.8px;
+        margin: 20px 0;
+    }
+
+    .hero-content > p {
+        font-size: 14px;
+        margin: 12px auto 0;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero-buttons a {
+        max-width: 100%;
+        padding: 11px 14px;
+        font-size: 13px;
+    }
+
+    .hero-stats {
+        justify-content: space-around;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .hero-stats > div {
+        min-width: 0;
+    }
+
+    .hero-stats h3 {
+        font-size: 22px;
+    }
+
+    .hero-stats p {
+        font-size: 10px;
+    }
+
+    .hero-visual {
+        flex: none;
+        width: 100%;
+        padding: 25px 0;
+        margin: 0 auto;
+    }
+
+    .quiz-illustration {
+        padding: 28px 18px;
+        border-radius: 20px;
+    }
+
+    .quiz-icon {
+        font-size: 58px;
+    }
+
+    .quiz-illustration h2 {
+        font-size: 21px;
+    }
+
+    .floating-card {
+        padding: 9px 12px;
+        gap: 8px;
+        max-width: 175px;
+    }
+
+    .floating-card > span {
+        font-size: 21px;
+    }
+
+    .floating-card strong {
+        font-size: 11px;
+    }
+
+    .floating-card small {
+        font-size: 9px;
+    }
+
+    .top-card {
+        left: 0;
+        top: 0;
+    }
+
+    .bottom-card {
+        right: 0;
+        bottom: 0;
+    }
+
+    .section {
+        padding: 55px 18px;
+    }
+
+    .category-grid,
+    .feature-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .quiz-section {
+        padding: 55px 15px;
+    }
+
+    .quiz-box {
+        width: 100%;
+        padding: 22px 16px;
+    }
+
+    .about-section {
+        flex-direction: column;
+        padding: 50px 20px;
+        gap: 28px;
+        text-align: center;
+    }
+
+    .about-icon {
+        min-width: 0;
+        width: 145px;
+        height: 145px;
+        font-size: 65px;
+    }
+
+    .about-content h2 {
+        font-size: 28px;
+    }
+
+    .cta {
+        width: calc(100% - 32px);
+        margin: 40px auto;
+        padding: 40px 18px;
+    }
+
+    .footer {
+        padding: 30px 18px;
+    }
+
+    .footer > p {
+        overflow-wrap: anywhere;
+    }
+}
+
+/* Extra-small phones */
+@media screen and (max-width: 360px) {
+    .hero {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .tag {
+        font-size: 9px;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons a {
+        text-align: center;
+    }
+
+    .hero-stats {
+        gap: 8px;
+    }
+
+    .hero-stats p {
+        font-size: 9px;
+    }
+
+    .floating-card {
+        max-width: 155px;
+    }
+}
