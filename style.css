@@ -1253,3 +1253,56 @@ iframe {
         max-width: 155px;
     }
 }
+
+/* Responsive QuizMaster Navigation */
+
+.header .navbar {
+    position: relative;
+    padding: 16px 24px;
+    gap: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #6c4cf1;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .header .navbar {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 14px 18px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .header .navbar .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 8px;
+    }
+
+    .header .navbar .nav-links.show {
+        display: flex;
+    }
+
+    .header .navbar .nav-links a {
+        display: block;
+        padding: 12px 8px;
+        border-top: 1px solid #eeeaff;
+    }
+
+    .header .navbar .nav-btn {
+        display: none;
+    }
+}
+
