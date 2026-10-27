@@ -14,22 +14,29 @@
 <body>
 
     <!-- Navigation -->
-    <header class="header">
-        <nav class="navbar" aria-label="Main navigation">
-            <a href="index.html" class="logo">
-                Quiz<span>Master.</span>
-            </a>
+    
+<header class="header">
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            Quiz<span>Master.</span>
+        </a>
 
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="quizmaster-1.html">Quiz</a></li>
-            </ul>
+        <button class="menu-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                onclick="toggleMenu()">
+            ☰
+        </button>
 
-            <a href="quizmaster-1.html" class="nav-btn">
-                Explore Quiz →
-            </a>
-        </nav>
-    </header>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quizmaster-1.html">Play</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+</header>
+    
 
     <!-- Hero Section -->
     <main>
