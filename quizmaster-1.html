@@ -175,19 +175,49 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
   }
 
   // ---- Screens ----
-  function home() {
-    clearInterval(timer);
-    game.innerHTML = `
-      <label for="pname"><b>Your name</b></label>
-      <input type="text" id="pname" maxlength="20" placeholder="Enter your name" value="${esc(name)}">
-      <p style="margin-bottom:12px"><b>Choose a category</b></p>
-      <div class="cats">${Object.keys(data).map((c) => `<button class="cat" data-c="${esc(c)}">${esc(c)}<br><small>${data[c].length} questions</small></button>`).join("")}</div>`;
-    game.querySelectorAll(".cat").forEach((b) => b.addEventListener("click", () => {
+  
+function home() {
+  clearInterval(timer);
+
+  const requestedCategory =
+    new URLSearchParams(window.location.search).get("category");
+
+  const validCategory = requestedCategory && data[requestedCategory]
+    ? requestedCategory
+    : null;
+
+  game.innerHTML = `
+    <label for="pname"><b>Your name</b></label>
+    <input type="text" id="pname" maxlength="20"
+      placeholder="Enter your name" value="${esc(name)}">
+
+    <p style="margin-bottom:12px">
+      <b>${validCategory
+        ? "Ready to play " + esc(validCategory) + "?"
+        : "Choose a category"}</b>
+    </p>
+
+    <div class="cats">
+      ${Object.keys(data)
+        .filter(c => !validCategory || c === validCategory)
+        .map(c => `
+          <button class="cat" data-c="${esc(c)}">
+            ${esc(c)}<br>
+            <small>${data[c].length} questions</small>
+          </button>
+        `).join("")}
+    </div>
+  `;
+
+  game.querySelectorAll(".cat").forEach(b =>
+    b.addEventListener("click", () => {
       name = $("pname").value.trim();
       localStorage.setItem("qm-name", name);
       start(b.dataset.c);
-    }));
-  }
+    })
+  );
+}
+  
 
   function start(c) { cat = c; qs = shuffle(data[c]); i = 0; score = 0; streak = 0; best = 0; wrong = []; question(); }
 
