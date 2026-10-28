@@ -242,3 +242,34 @@ function toggleMenu() {
 
     button.textContent = isOpen ? "✕" : "☰";
 }
+async function sendQuizResult(category, score, total) {
+    const playerName = prompt("Enter your name:");
+
+    try {
+        const response = await fetch(
+            "https://wajeehatariq.pythonanywhere.com/api/submit",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: playerName || "Guest",
+                    category: category,
+                    score: score,
+                    total: total
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log("Python backend response:", data);
+        } else {
+            console.error("Backend error:", data);
+        }
+    } catch (error) {
+        console.error("Could not connect to Python backend:", error);
+    }
+}
