@@ -192,6 +192,7 @@
 
   function renderResult() {
     const total = questions.length;
+    sendQuizResult(category, score, total);
     const pct = Math.round((score / total) * 100);
     let message = "Keep practicing, you'll get there!";
     if (pct === 100) message = "Perfect score! You're a genius! 🏆";
