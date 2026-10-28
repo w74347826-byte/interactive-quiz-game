@@ -151,7 +151,9 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
     const c = filter.value;
     let rows;
     try {
-      const r = await fetch("/api/scores" + (c ? "?category=" + encodeURIComponent(c) : ""));
+      
+const r = await fetch("https://wajeehatariq.pythonanywhere.com/api/scores" + (c ? "?category=" + encodeURIComponent(c) : ""));
+      
       if (!r.ok) throw 0;
       rows = await r.json();
     } catch {
@@ -165,7 +167,13 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
   async function saveScore() {
     const entry = { name: name || "Anonymous", category: cat, score, total: qs.length };
     try {
-      const r = await fetch("/api/scores", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry) });
+      
+const r = await fetch("https://wajeehatariq.pythonanywhere.com/api/scores", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(entry)
+});
+      
       if (!r.ok) throw 0;
     } catch {
       const all = local(); all.push({ ...entry, pct: Math.round((score / qs.length) * 100) });
