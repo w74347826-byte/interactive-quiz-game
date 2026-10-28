@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Quiz | Quiz Master</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .play-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .play-page h1 {
+      color: #6c3bdb;
+      font-size: clamp(30px, 6vw, 46px);
+    }
+    .play-intro {
+      color: #777;
+      margin-bottom: 30px;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .category-card {
+      background: white;
+      border: 1px solid #e5ddff;
+      border-radius: 18px;
+      padding: 25px 18px;
+      box-shadow: 0 8px 25px #37206a10;
+    }
+    .category-card .emoji {
+      font-size: 42px;
+    }
+    .category-card h2 {
+      color: #241542;
+    }
+    .category-card p {
+      color: #777;
+    }
+    .play-button {
+      display: inline-block;
+      background: #6c3bdb;
+      color: white;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="play.html">Play</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="play-page">
+    <h1>Choose Your Quiz</h1>
+    <p class="play-intro">
+      Select a category and challenge your knowledge!
+    </p>
+
+    <div class="category-grid">
+      <article class="category-card">
+        <div class="emoji">💻</div>
+        <h2>Technology</h2>
+        <p>Test your digital knowledge.</p>
+        <a class="play-button" href="categories.html">Explore Quizzes</a>
+      </article>
+
+      <article class="category-card">
+        <div class="emoji">🔬</div>
+        <h2>Science</h2>
+        <p>Discover scientific facts.</p>
+        <a class="play-button" href="categories.html">Explore Quizzes</a>
+      </article>
+
+      <article class="category-card">
+        <div class="emoji">🌍</div>
+        <h2>General Knowledge</h2>
+        <p>Explore the world around you.</p>
+        <a class="play-button" href="categories.html">Explore Quizzes</a>
+      </article>
+
+      <article class="category-card">
+        <div class="emoji">📚</div>
+        <h2>Education</h2>
+        <p>Learn something new.</p>
+        <a class="play-button" href="categories.html">Explore Quizzes</a>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
