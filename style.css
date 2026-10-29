@@ -1392,3 +1392,19 @@ header nav a:hover,
     opacity: 1 !important;
 }
 
+/* Fix Home navigation link color */
+nav a,
+nav a:visited,
+.nav-link,
+a[href="index.html"] {
+    color: #6C3BDB !important;
+}
+
+/* Keep the Home link readable on hover */
+nav a:hover,
+.nav-link:hover,
+a[href="index.html"]:hover {
+    color: #4B239F !important;
+}
+
+
