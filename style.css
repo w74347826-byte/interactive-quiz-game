@@ -995,7 +995,7 @@ iframe {
 .header .navbar .nav-links a {
     color: #55536b;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .header .navbar .nav-btn {
@@ -1315,3 +1315,12 @@ button {
     color: #FFFFFF !important;
     font-weight: 700;
 }
+
+/* Improve Explore Quizzes button text */
+a.explore-btn,
+a.primary-btn,
+a.nav-btn {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
