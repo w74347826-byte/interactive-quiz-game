@@ -319,9 +319,9 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
     window.QUESTIONS[category] = extra[category].map(function (item) {
       return {
   q: item[0],
-  options: item[1],
-  answer: item[2],
-  level: "easy"
+  o: item[1],
+  a: item[2]
+};
 };
     });
   });
