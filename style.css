@@ -1364,14 +1364,14 @@ nav a,
 nav a:visited,
 .nav-link,
 a[href="index.html"] {
-    color: #6C3BDB !important;
+    color: #ffffff !important;
 }
 
 /* Keep the Home link readable on hover */
 nav a:hover,
 .nav-link:hover,
 a[href="index.html"]:hover {
-    color: #4B239F !important;
+    color: #ffd166 !important;
 }
 
 /* Navigation bar styling for all pages */
@@ -1437,4 +1437,17 @@ p { color: #475569; }            /* readable description text */
 .card button {
   background: #4f46e5;           /* stronger purple */
   color: #fff;
+}
+    /* Nav link color fix */
+nav a,
+nav a:visited,
+.nav-link,
+a[href="index.html"] {
+    color: #ffffff !important;
+}
+
+nav a:hover,
+.nav-link:hover,
+a[href="index.html"]:hover {
+    color: #ffd166 !important;
 }
