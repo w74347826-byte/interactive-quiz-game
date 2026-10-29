@@ -1455,5 +1455,12 @@ nav a.active {
     }
 }
 
+/* Hide the three-line menu button */
+.menu-toggle,
+.hamburger,
+.menu-btn {
+    display: none !important;
+}
+
 
 
