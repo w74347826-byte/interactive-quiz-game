@@ -1363,4 +1363,10 @@ header nav a:hover,
 .stat-label {
   font-size: 14px;
 }
+/* Small plus sign in hero statistics */
+.hero-stats h3 sup {
+    font-size: 50%;
+    vertical-align: super;
+    line-height: 0;
+}
 
