@@ -245,21 +245,7 @@ async function testBackend() {
   // ---------- Start ----------
   startQuiz(category);
 })();
-function toggleMenu() {
-    const menu = document.getElementById("navLinks");
-    const button = document.querySelector(".menu-toggle");
 
-    if (!menu || !button) return;
-
-    const isOpen = menu.classList.toggle("show");
-
-    button.setAttribute("aria-expanded", isOpen);
-    button.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
-
-    button.textContent = isOpen ? "✕" : "☰";
 }
 async function sendQuizResult(category, score, total) {
     const playerName = prompt("Enter your name:");
