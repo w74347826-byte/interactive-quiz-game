@@ -1349,4 +1349,18 @@ header nav a:hover,
 .nav-links a:hover {
     color: #ffd166 !important;
 }
+.stat-number sup {
+  font-size: 50%;
+  vertical-align: super;
+  line-height: 0;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 14px;
+}
 
