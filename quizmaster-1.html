@@ -322,6 +322,10 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
   });
 })();
 </script>
+  <script>
+(function () {
+  const extra = {
+    "Mathematics": [
       ["What is 25 + 37?",["52","62","72","82"],1],
       ["What is 9 × 8?",["63","72","81","64"],1],
       ["What is 144 ÷ 12?",["10","11","12","14"],2],
@@ -332,7 +336,7 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
       ["What is 3/4 as a decimal?",["0.25","0.5","0.75","1.25"],2],
       ["What is 11 × 11?",["111","121","131","101"],1],
       ["What is 1000 − 456?",["544","554","644","534"],0],
-      ["What is the perimeter of a square with side 5 cm?",["10 cm","15 cm","20 cm","25 cm"],2],
+      ["Perimeter of a square with side 5 cm?",["10 cm","15 cm","20 cm","25 cm"],2],
       ["Which number is prime?",["9","15","17","21"],2],
       ["What is 2³?",["4","6","8","9"],2],
       ["What is 45 + 55?",["90","95","100","110"],2],
@@ -344,13 +348,13 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
       ["Which ocean is the largest?",["Atlantic","Indian","Pacific","Arctic"],2],
       ["Mount Everest lies in which mountain range?",["Alps","Andes","Himalayas","Rockies"],2],
       ["What is the capital of Japan?",["Seoul","Tokyo","Beijing","Bangkok"],1],
-      ["Which country is famous for the pyramids of Giza?",["Egypt","Greece","Mexico","Italy"],0],
-      ["Which river flows through Egypt?",["Amazon","Nile","Indus","Danube"],1],
-      ["Which is the smallest continent?",["Europe","Australia","Africa","Asia"],1],
+      ["Which country has the pyramids of Giza?",["Egypt","Greece","Mexico","Italy"],0],
+      ["Which river flows through Egypt?",["Nile","Indus","Danube","Amazon"],0],
+      ["Which is the smallest continent?",["Europe","Asia","Africa","Australia"],3],
       ["What is the capital of Türkiye?",["Istanbul","Ankara","Izmir","Antalya"],1],
       ["Which country is shaped like a boot?",["Spain","Italy","France","Portugal"],1],
       ["Which desert is in northern Africa?",["Gobi","Sahara","Thar","Mojave"],1],
-      ["Which country has the city of Rio de Janeiro?",["Brazil","Chile","Peru","Canada"],0],
+      ["Rio de Janeiro is in which country?",["Brazil","Chile","Peru","Canada"],0],
       ["What is the capital of Saudi Arabia?",["Jeddah","Makkah","Riyadh","Dammam"],2],
       ["Which ocean lies between Africa and Australia?",["Atlantic","Indian","Arctic","Southern"],1],
       ["On which continent is Argentina?",["Asia","Europe","South America","Africa"],2]
@@ -361,8 +365,8 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
       ["How many rings are on the Olympic symbol?",["4","5","6","7"],1],
       ["In which sport is a slam dunk used?",["Basketball","Cricket","Golf","Tennis"],0],
       ["Wimbledon is associated with which sport?",["Football","Tennis","Swimming","Boxing"],1],
-      ["How many players are on court for one volleyball team?",["5","6","7","8"],1],
-      ["Which country won the 2022 men's FIFA World Cup?",["France","Brazil","Argentina","Germany"],2],
+      ["How many players are on a volleyball team on court?",["5","6","7","8"],1],
+      ["Which country won the 2022 FIFA World Cup?",["France","Brazil","Argentina","Germany"],2],
       ["What is the length of a marathon approximately?",["10 km","21 km","42.195 km","50 km"],2],
       ["Which sport uses a shuttlecock?",["Badminton","Baseball","Rugby","Golf"],0],
       ["What does LBW mean in cricket?",["Long Bat Win","Leg Before Wicket","Last Ball Wide","Left Boundary Win"],1],
@@ -374,9 +378,9 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
     ],
     "Programming": [
       ["Which language adds interactivity to web pages?",["HTML","CSS","JavaScript","SQL"],2],
-      ["Which symbol starts a JavaScript single-line comment?",["//","##","**","<>"],0],
+      ["Which symbol starts a JavaScript single-line comment?",["//","##","/*","<>"],0],
       ["Which Python function displays output?",["show()","print()","displayText()","writeLine()"],1],
-      ["What does HTML stand for?",["HyperText Markup Language","HighText Machine Language","Hyper Transfer Main Link","Home Tool Markup Language"],0],
+      ["What does HTML stand for?",["HyperText Markup Language","Highest Machine Language","Hyper Transfer Main Link","None"],0],
       ["Which data type stores true or false?",["String","Boolean","Array","Integer"],1],
       ["Which keyword declares a constant in JavaScript?",["var","let","const","fixed"],2],
       ["Which symbol is used for strict equality in JavaScript?",["=","==","===","!="],2],
@@ -386,10 +390,124 @@ select{font:inherit;padding:9px 12px;border:2px solid var(--p200);border-radius:
       ["Which is a version control tool?",["Git","Excel","Paint","PowerPoint"],0],
       ["What is a bug in programming?",["An error","A feature","A keyboard","A file"],0],
       ["Which brackets commonly define an array in JavaScript?",["{}","[]","()","<>"],1],
-      ["What does API stand for?",["Application Programming Interface","Automated Program Internet","Applied Processing Input","Advanced Page Index"],0],
+      ["Which language is used for database queries?",["Application Programming Interface","Structured Query Language","Applied Processing Internet","None"],1],
       ["What does SQL commonly manage?",["Databases","Animations","Audio files","Screen brightness"],0]
     ],
     "History": [
+      ["Who founded the Mughal Empire in India?",["Akbar","Babur","Shah Jahan","Aurangzeb"],1],
+      ["In which year did Pakistan become independent?",["1940","1945","1947","1950"],2],
+      ["Who was the founder of Pakistan?",["Allama Iqbal","Liaquat Ali Khan","Muhammad Ali Jinnah","Sir Syed Ahmad Khan"],2],
+      ["Which ancient civilization built the pyramids of Giza?",["Romans","Egyptians","Greeks","Persians"],1],
+      ["Who was the first man to walk on the Moon?",["Yuri Gagarin","Neil Armstrong","Buzz Aldrin","John Glenn"],1],
+      ["In which year did World War II end?",["1942","1943","1945","1950"],2],
+      ["Who discovered the sea route to India around Africa?",["Christopher Columbus","Vasco da Gama","Marco Polo","Ferdinand Magellan"],1],
+      ["The Great Wall is located in which country?",["Japan","China","India","Korea"],1],
+      ["Who was the first president of the United States?",["Abraham Lincoln","George Washington","Thomas Jefferson","John Adams"],1],
+      ["Which city was the center of the Roman Empire?",["Athens","Rome","Paris","London"],1],
+      ["Who presented the idea of Pakistan in the Allahabad Address?",["Allama Iqbal","Muhammad Ali Jinnah","Liaquat Ali Khan","Sir Syed Ahmad Khan"],0],
+      ["In which year did the French Revolution begin?",["1776","1789","1815","1848"],1],
+      ["Who was known as the Iron Lady of Britain?",["Queen Victoria","Margaret Thatcher","Elizabeth I","Theresa May"],1],
+      ["Which civilization developed democracy in ancient times?",["Ancient Greece","Ancient Egypt","Maya","Mesopotamia"],0],
+      ["Who was the first female Prime Minister of Pakistan?",["Fatima Jinnah","Benazir Bhutto","Hina Rabbani Khar","Maryam Nawaz"],1]
+    ],
+    "Business & Marketing": [
+      ["What does KPI stand for?",["Key Performance Indicator","Known Product Information","Key Price Index","Knowledge Process Input"],0],
+      ["What is marketing mainly about?",["Promoting and selling products","Only hiring staff","Only bookkeeping","Making laws"],0],
+      ["What does SWOT stand for?",["Strengths, Weaknesses, Opportunities, Threats","Sales, Work, Output, Targets","Strategy, Wealth, Orders, Trade","Systems, Work, Operations, Tasks"],0],
+      ["What is a target market?",["A specific group of customers","A company's building","A group of employees","A bank account"],0],
+      ["What does CEO stand for?",["Chief Executive Officer","Customer Engagement Operator","Central Economic Office","Company Entry Organizer"],0],
+      ["What is profit?",["Revenue minus costs","Costs plus debt","Total employees","Total products"],0],
+      ["What is branding?",["Creating a recognizable identity","Reducing staff","Counting inventory only","Paying taxes"],0],
+      ["Which is an example of digital marketing?",["Social media advertising","A paper ledger","A warehouse","A factory machine"],0],
+      ["What is market research?",["Collecting information about customers and markets","Hiring only managers","Designing a building","Preparing tax laws"],0],
+      ["What does B2B mean?",["Business to Business","Back to Banking","Brand to Buyer","Business to Budget"],0],
+      ["What is customer satisfaction?",["How well a product meets customer expectations","A company's rent","The number of workers","A type of tax"],0],
+      ["What is an entrepreneur?",["Someone who starts a business","A government office","A customer only","A factory product"],0],
+      ["What is a budget?",["A plan for income and spending","A product advertisement","A customer list","A company logo"],0],
+      ["What is a USP in marketing?",["Unique Selling Proposition","Universal Sales Price","United Service Plan","User Shopping Preference"],0],
+      ["Which is a common promotional tool?",["Advertising","Auditing only","Recruitment only","Stock counting only"],0]
+    ],
+    "English Grammar": [
+      ["Which word is a noun?",["Quickly","Beautiful","Teacher","Run"],2],
+      ["Choose the correct plural of child.",["Childs","Children","Childes","Childrens"],1],
+      ["What is the past tense of go?",["Goed","Gone","Went","Going"],2],
+      ["Which is a pronoun?",["Table","She","Green","Happily"],1],
+      ["Choose the correct article: ___ apple.",["A","An","Thee","No article ever"],1],
+      ["Which word is an adjective?",["Beautiful","Run","Slowly","They"],0],
+      ["Choose the correct sentence.",["He go to school.","He goes to school.","He going school.","He gone to school."],1],
+      ["What is the opposite of ancient?",["Old","Historic","Modern","Past"],2],
+      ["Which punctuation ends a question?",["Comma","Full stop","Question mark","Colon"],2],
+      ["What is the comparative form of tall?",["Tallest","More tall","Taller","Tallly"],2],
+      ["Which word is a conjunction?",["And","Quickly","Blue","Book"],0],
+      ["Choose the correct spelling.",["Necessary","Neccessary","Necesary","Necassary"],0],
+      ["What is the past participle of write?",["Wrote","Written","Writing","Writes"],1],
+      ["Which sentence is in the future tense?",["I walked home.","I walk home.","I will walk home.","I am walking home."],2],
+      ["Which word is an adverb?",["Carefully","Careful","Care","Caring"],0]
+    ],
+    "Islamic Knowledge": [
+      ["How many pillars of Islam are there?",["3","4","5","6"],2],
+      ["What is the holy book of Islam?",["Torah","Bible","Quran","Psalms"],2],
+      ["How many obligatory daily prayers are there?",["3","4","5","6"],2],
+      ["In which month do Muslims fast?",["Muharram","Ramadan","Safar","Rajab"],1],
+      ["What is the direction Muslims face during prayer called?",["Qibla","Hijrah","Mihrab","Minbar"],0],
+      ["Which city is home to the Kaaba?",["Madinah","Makkah","Jerusalem","Cairo"],1],
+      ["What is the pilgrimage to Makkah called?",["Zakat","Sawm","Hajj","Salah"],2],
+      ["What is the Islamic declaration of faith called?",["Shahada","Zakat","Iftar","Tawaf"],0],
+      ["Which angel brought revelations to Prophet Muhammad (PBUH)?",["Mikail","Jibreel","Israfeel","Izraeel"],1],
+      ["What is giving obligatory charity called?",["Sawm","Zakat","Hajj","Adhan"],1],
+      ["What is the meal to break the fast called?",["Suhoor","Iftar","Salah","Nikah"],1],
+      ["Which month follows Ramadan in the Islamic calendar?",["Shawwal","Rajab","Safar","Muharram"],0],
+      ["In which city is Masjid an-Nabawi located?",["Makkah","Madinah","Taif","Jeddah"],1],
+      ["What is the call to prayer called?",["Adhan","Khutbah","Tawaf","Wudu"],0],
+      ["Which Islamic calendar event marks the migration to Madinah?",["Hijrah","Hajj","Eid","Isra"],0]
+    ],
+    "Entertainment": [
+      ["Which instrument has black and white keys?",["Piano","Flute","Drum","Trumpet"],0],
+      ["Which is a popular animated film studio?",["Pixar","NASA","UNESCO","WHO"],0],
+      ["What do we call a person who directs a film?",["Director","Referee","Reporter","Accountant"],0],
+      ["Which award is associated with films in Hollywood?",["Oscar","Grammy","Nobel","Booker"],0],
+      ["Which device is commonly used to take photographs?",["Camera","Printer","Router","Scanner only"],0],
+      ["Which of these is a board game?",["Chess","Swimming","Cycling","Singing"],0],
+      ["What is a TV series episode?",["One installment of a series","A camera lens","A music instrument","A ticket"],0],
+      ["Which platform is known for video sharing?",["YouTube","Calculator","Maps only","Calendar"],0],
+      ["What is a live performance before an audience called?",["Show","Spreadsheet","Database","Receipt"],0],
+      ["Which instrument is commonly associated with rock music?",["Electric guitar","Thermometer","Microscope","Compass"],0],
+      ["What does a film soundtrack contain?",["Music and audio","Only subtitles","Only costumes","Only posters"],0],
+      ["Which activity involves performing a role on stage?",["Acting","Accounting","Gardening","Typing"],0],
+      ["What is a book adapted into a film called?",["A film adaptation","A weather report","A spreadsheet","A dictionary entry"],0],
+      ["Which is a form of visual entertainment?",["Animation","Tax return","Invoice","Timetable"],0],
+      ["What do audiences usually buy to enter a cinema?",["Ticket","Passport","Receipt book","Library card"],0]
+    ],
+    "Arts & Literature": [
+      ["Who wrote Romeo and Juliet?",["William Shakespeare","Charles Dickens","Jane Austen","Mark Twain"],0],
+      ["Who painted the Mona Lisa?",["Pablo Picasso","Leonardo da Vinci","Vincent van Gogh","Claude Monet"],1],
+      ["What is a poem's collection of lines called?",["Stanza","Chapter","Paragraph only","Scene"],0],
+      ["Who wrote Pride and Prejudice?",["Jane Austen","Emily Brontë","Virginia Woolf","Agatha Christie"],0],
+      ["Which art form uses clay to create objects?",["Pottery","Photography","Calligraphy","Dance"],0],
+      ["Who wrote Oliver Twist?",["Charles Dickens","William Wordsworth","Oscar Wilde","George Orwell"],0],
+      ["What is a person who writes poems called?",["Poet","Sculptor","Editor only","Actor"],0],
+      ["Which colors are primary in traditional painting?",["Red, yellow, blue","Green, purple, orange","Black, white, grey","Pink, brown, grey"],0],
+      ["Who wrote the Harry Potter book series?",["J. K. Rowling","Enid Blyton","Roald Dahl","Suzanne Collins"],0],
+      ["What is a sculpture?",["Three-dimensional artwork","A type of poem","A musical note","A short story"],0],
+      ["Which tool is commonly used for watercolor painting?",["Paintbrush","Hammer","Compass","Wrench"],0],
+      ["What is the main character of a story called?",["Protagonist","Audience","Publisher","Narrator always"],0],
+      ["Who wrote The Jungle Book?",["Rudyard Kipling","Lewis Carroll","J. R. R. Tolkien","C. S. Lewis"],0],
+      ["What is a biography?",["An account of someone's life","A fictional planet","A poem about weather","A painting technique"],0],
+      ["Which literary form is usually written for stage performance?",["Drama","Dictionary","Atlas","Recipe"],0]
+    ]
+  };
+
+  Object.keys(extra).forEach(function (category) {
+    window.QUESTIONS[category] = extra[category].map(function (item) {
+      return {
+        q: item[0],
+        o: item[1],
+        a: item[2]
+      };
+    });
+  });
+})();
+       </script>
 
 <script>
 (function () {
