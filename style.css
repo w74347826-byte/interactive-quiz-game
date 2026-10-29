@@ -1272,14 +1272,7 @@ iframe {
     }
 
     
-    .header .navbar .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding-top: 8px;
-    }
+    
 
     .header .navbar .nav-links.show {
         display: flex;
@@ -1291,14 +1284,7 @@ iframe {
         border-top: 1px solid #eeeaff;
     }
 
-    .header .navbar .nav-btn {
-        display: none;
-    }
-}
-
-.nav-links a {
-    font-weight: 700;
-}
+    
 
 .explore-btn,
 button {
