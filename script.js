@@ -2,6 +2,24 @@
 // Works with the existing index.html. Add this before </body>:
 //   <script src="script.js"></script>
 
+const API_URL = "https://wajeehatariq.pythonanywhere.com";
+
+async function testBackend() {
+    try {
+        const response = await fetch(`${API_URL}/api/test`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Backend connected:", data);
+        return data;
+    } catch (error) {
+        console.error("Backend connection failed:", error);
+    }
+}
+
 (function () {
   "use strict";
 
