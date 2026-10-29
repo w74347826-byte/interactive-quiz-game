@@ -1370,3 +1370,25 @@ header nav a:hover,
     line-height: 0;
 }
 
+/* Fix QuizMaster logo and mobile menu */
+.navbar .logo {
+    color: #6C3BDB !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.navbar .logo span {
+    color: #6C3BDB !important;
+}
+
+.navbar .menu-toggle {
+    display: block !important;
+    color: #6C3BDB !important;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
