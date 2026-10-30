@@ -1475,4 +1475,15 @@ header.header .navbar .logo span {
 body > header:not(.header) nav a {
     color: #ffffff !important;
 }
+    .nav-links {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  padding: 8px 10px;
+}
     
