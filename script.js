@@ -241,12 +241,10 @@ async function testBackend() {
     if (!QUESTIONS[name] || !link) return;
     link.addEventListener("click", () => startQuiz(name)); // link still scrolls to #quiz
   });
-
   // ---------- Start ----------
   startQuiz(category);
 })();
 
-}
 async function sendQuizResult(category, score, total) {
     const playerName = prompt("Enter your name:");
 
@@ -278,3 +276,58 @@ async function sendQuizResult(category, score, total) {
         console.error("Could not connect to Python backend:", error);
     }
 }
+
+// ---------- Load Leaderboard ----------
+async function loadLeaderboard() {
+    const tableBody = document.querySelector("#leaderboard-body");
+
+    if (!tableBody) return;
+
+    try {
+        const response = await fetch(
+            "https://wajeehatariq.pythonanywhere.com/api/scores"
+        );
+
+        if (!response.ok) {
+            throw new Error("Could not load scores");
+        }
+
+        const scores = await response.json();
+
+        if (!scores.length) {
+            tableBody.innerHTML =
+                '<tr><td colspan="5">No results available yet.</td></tr>';
+            return;
+        }
+
+        scores.sort((a, b) => b.pct - a.pct);
+
+        tableBody.innerHTML = scores.map((player, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${escapeHTML(player.name)}</td>
+                <td>${escapeHTML(player.category)}</td>
+                <td>${player.score}/${player.total}</td>
+                <td>${player.pct}%</td>
+            </tr>
+        `).join("");
+
+    } catch (error) {
+        console.error("Leaderboard error:", error);
+        tableBody.innerHTML =
+            '<tr><td colspan="5">Unable to load results.</td></tr>';
+    }
+}
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+document.addEventListener("DOMContentLoaded", loadLeaderboard);
+
