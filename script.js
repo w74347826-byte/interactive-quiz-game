@@ -6,7 +6,7 @@ const API_URL = "https://wajeehatariq.pythonanywhere.com";
 
 async function testBackend() {
     try {
-        const response = await fetch(`${API_URL}/api/test`);
+        const response = await fetch(`${API_URL}/api/health`);
 
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
@@ -250,7 +250,7 @@ async function sendQuizResult(category, score, total) {
 
     try {
         const response = await fetch(
-            "https://wajeehatariq.pythonanywhere.com/api/submit",
+            "https://wajeehatariq.pythonanywhere.com/api/scores",
             {
                 method: "POST",
                 headers: {
