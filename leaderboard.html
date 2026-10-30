@@ -1,168 +1,80 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard | Quiz Master</title>
-  "https://wajeehatariq.pythonanywhere.com/api/scores"
-  <style>
-    .leaderboard-page {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 18px;
+<script>
+async function loadLeaderboard() {
+  const body = document.getElementById("leaderboard-body");
+  const note = document.getElementById("leaderboard-note");
+
+  body.innerHTML =
+    '<tr><td colspan="5">Loading results...</td></tr>';
+
+  try {
+    const response = await fetch(
+      "https://wajeehatariq.pythonanywhere.com/api/scores"
+    );
+
+    if (!response.ok) {
+      throw new Error("HTTP error: " + response.status);
     }
-    .leaderboard-page h1 {
-      color: #6c3bdb;
-      text-align: center;
-      font-size: clamp(30px, 6vw, 44px);
+
+    const results = await response.json();
+
+    if (!Array.isArray(results) || results.length === 0) {
+      body.innerHTML =
+        '<tr><td colspan="5">No saved results yet.</td></tr>';
+      note.textContent = "Complete a quiz to see results here.";
+      return;
     }
-    .leaderboard-intro {
-      color: #777;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .score-card {
-      background: white;
-      border: 1px solid #e5ddff;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 22px;
-      box-shadow: 0 8px 25px #37206a10;
-    }
-    .table-wrap {
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    th, td {
-      padding: 14px 10px;
-      border-bottom: 1px solid #eee8ff;
-    }
-    th {
-      color: #6c3bdb;
-      background: #f6f2ff;
-    }
-    .feedback {
-      color: #63527d;
-      background: #f6f2ff;
-      padding: 18px;
-      border-radius: 12px;
-    }
-    .note {
-      font-size: 14px;
-      color: #777;
-      text-align: center;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="play.html">Play</a>
-      <a href="leaderboard.html">Leaderboard</a>
-      
-    </nav>
-  </header>
 
-  <main class="leaderboard-page">
-    <h1>🏆 Leaderboard</h1>
-    <p class="leaderboard-intro">
-      Celebrate your progress and quiz achievements.
-    </p>
+    results.sort(
+      (a, b) => Number(b.pct) - Number(a.pct)
+    );
 
-    <section class="score-card">
-      <h2>Player Rankings</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Category</th>
-              <th>Score</th>
-              <th>Feedback</th>
-            </tr>
-          </thead>
-          <tbody id="leaderboard-body">
-            <tr>
-              <td colspan="5">Loading results...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note" id="leaderboard-note">
-        Connecting to the Python backend...
-      </p>
-    </section>
-  </main>
+    body.innerHTML = "";
 
-  <script>
-    async function loadLeaderboard() {
-      const body = document.getElementById("leaderboard-body");
-      const note = document.getElementById("leaderboard-note");
+    results.forEach((player, index) => {
+      const score = Number(player.score) || 0;
+      const total = Number(player.total) || 0;
+      const percent = Number(player.pct) || 0;
 
-      try {
-        const response = await fetch(
-          "https://wajeehatariq.pythonanywhere.com/api/leaderboard"
-        );
+      let feedback = "Keep practicing!";
 
-        if (!response.ok) {
-          throw new Error("Leaderboard endpoint is not available yet.");
-        }
-
-        const results = await response.json();
-
-        if (!Array.isArray(results) || results.length === 0) {
-          body.innerHTML =
-            '<tr><td colspan="5">No saved results yet.</td></tr>';
-          note.textContent =
-            "Complete a quiz to see results here.";
-          return;
-        }
-
-        results.sort((a, b) => b.score - a.score);
-
-        body.innerHTML = "";
-
-        results.forEach((player, index) => {
-          const score = Number(player.score);
-          const total = Number(player.total);
-          const percent = total > 0 ? (score / total) * 100 : 0;
-
-          let feedback = "Keep practicing!";
-          if (percent === 100) feedback = "Excellent!";
-          else if (percent >= 80) feedback = "Great work!";
-          else if (percent >= 60) feedback = "Good effort!";
-
-          const row = document.createElement("tr");
-          [index + 1, player.name || "Guest",
-            player.category || "-", `${score}/${total}`, feedback]
-            .forEach(value => {
-              const cell = document.createElement("td");
-              cell.textContent = value;
-              row.appendChild(cell);
-            });
-
-          body.appendChild(row);
-        });
-
-        note.textContent = "Results received from the Python backend.";
-      } catch (error) {
-        body.innerHTML =
-          '<tr><td colspan="5">Results are not available yet.</td></tr>';
-        note.textContent =
-          "The Python leaderboard API still needs to be connected.";
+      if (percent >= 100) {
+        feedback = "Excellent!";
+      } else if (percent >= 80) {
+        feedback = "Great work!";
+      } else if (percent >= 60) {
+        feedback = "Good effort!";
       }
-    }
 
-    loadLeaderboard();
-  </script>
-</body>
-</html>
+      const row = document.createElement("tr");
+
+      [
+        index + 1,
+        player.name || "Guest",
+        player.category || "-",
+        score + "/" + total,
+        feedback
+      ].forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+
+      body.appendChild(row);
+    });
+
+    note.textContent =
+      "Results successfully received from Python backend.";
+
+  } catch (error) {
+    body.innerHTML =
+      '<tr><td colspan="5">Unable to load results.</td></tr>';
+
+    note.textContent =
+      "Connection error: " + error.message;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadLeaderboard);
+      </script>
+      
