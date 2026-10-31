@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 8px;
+  background: linear-gradient(90deg, #2e1065, #6d3adf);
+  border-radius: 0;
+  margin: 0;
+}
+.navbar a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (max-width: 400px) {
+  .navbar a { font-size: 13px; }
+}
