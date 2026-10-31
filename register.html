@@ -226,6 +226,43 @@ document.getElementById("registerForm")
     }
 });
 </script>
+    <script>
+const API = "https://wajeehatariq.pythonanywhere.com";
+
+async function registerUser(e) {
+  e.preventDefault();
+  const inputs = document.querySelectorAll("input");
+  const name = inputs[0].value.trim();
+  const email = inputs[1].value.trim();
+  const password = inputs[2].value;
+  const confirm = inputs[3].value;
+
+  if (password !== confirm) { alert("Passwords do not match"); return; }
+
+  try {
+    const res = await fetch(API + "/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password })
+    });
+    const data = await res.json();
+
+    if (!res.ok) { alert(data.error || "Registration failed"); return; }
+
+    alert("Account created! Please log in.");
+    window.location.href = "login.html";
+  } catch (err) {
+    alert("Cannot reach the server. Try again.");
+  }
+}
+
+const form = document.querySelector("form");
+if (form) {
+  form.addEventListener("submit", registerUser);
+} else {
+  document.querySelector("button").addEventListener("click", registerUser);
+}
+    </script>
 
 </body>
 </html>
