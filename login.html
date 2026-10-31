@@ -160,6 +160,32 @@
         </a>
 
     </div>
+    <script>
+const API = "https://wajeehatariq.pythonanywhere.com";
+
+document.getElementById("loginBtn").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const res = await fetch(API + "/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (!res.ok) { alert(data.error || "Login failed"); return; }
+
+    localStorage.setItem("qm-name", data.name);
+    localStorage.setItem("qm-token", data.token);
+    window.location.href = "play.html";
+  } catch (err) {
+    alert("Cannot reach the server. Try again.");
+  }
+});
+    </script>
 
 </body>
 </html>
