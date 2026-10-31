@@ -186,6 +186,42 @@ document.getElementById("loginBtn").addEventListener("click", async (e) => {
   }
 });
     </script>
+    <script>
+const API = "https://wajeehatariq.pythonanywhere.com";
+
+async function loginUser(e) {
+  e.preventDefault();
+  const inputs = document.querySelectorAll("input");
+  const email = inputs[0].value.trim();
+  const password = inputs[1].value;
+
+  if (!email || !password) { alert("Enter your email and password"); return; }
+
+  try {
+    const res = await fetch(API + "/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (!res.ok) { alert(data.error || "Login failed"); return; }
+
+    localStorage.setItem("qm-name", data.name);
+    localStorage.setItem("qm-token", data.token);
+    window.location.href = "play.html";
+  } catch (err) {
+    alert("Cannot reach the server. Try again.");
+  }
+}
+
+const form = document.querySelector("form");
+if (form) {
+  form.addEventListener("submit", loginUser);
+} else {
+  document.querySelector("button").addEventListener("click", loginUser);
+}
+    </script>
 
 </body>
 </html>
